@@ -1,7 +1,6 @@
 .venv
 .env
-profiles.yml
 google-key.json
-DE-DBT-Google-Bigquery/logs
-DE-DBT-Google-Bigquery/.user.yml
-DE-DBT-Google-Bigquery/target
+.user.yml
+logs/
+target/

@@ -1,0 +1,11 @@
+bigquery_with_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: gg-bigquery-datawarehouse
+      dataset: BronzeLayer
+      threads: 4 # Must be a value of 1 or greater
+      keyfile: ../google-key.json
+      OPTIONAL_CONFIG: VALUE

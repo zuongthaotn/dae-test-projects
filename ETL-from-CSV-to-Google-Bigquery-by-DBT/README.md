@@ -11,6 +11,7 @@
 3. Install dbt 
     - source ./venv/bin/activate
     - pip install dbt-core dbt-bigquery
+4. Create folder "Extract" for Extract Steps, "Transform" for Transformation Steps, "Load" for Load Steps.
 
 ## Extract Steps:
 1. Go to Goole BigQuery -> create BronzeLayer dataset
@@ -24,7 +25,7 @@ run:
     - gcloud auth login
     - gcloud config set project gg-bigquery-datawarehouse
     - gcloud iam service-accounts keys create google-key.json --iam-account=gg-21032025@gg-bigquery-datawarehouse.iam.gserviceaccount.com
-    Don't forget changing the "gg-bigquery-datawarehouse" by your bigquery projectID
+    Don't forget changing the "gg-bigquery-datawarehouse" by your bigquery projectID and "gg-21032025" by other one
 4.1. if you can not create google-key.json by command you can follow UI steps:
     - Go to Goolge console
     - Navigation menu (top left) -> AIM & Admin -> Services Account -> Create service account -> create a new one
@@ -36,31 +37,26 @@ dbt seed --select "file_name_without_.csv"
 You need to run one by one or run "dbt seed" to seed all file csv to Google BigQuery
 
 ## Tranform Steps:
-1. Data Cleaning(Làm sạch dữ liệu)
-    - Xử lý giá trị thiếu (Missing Values)
-    - Loại bỏ dữ liệu trùng lặp (Deduplication)
-    - Chuẩn hóa định dạng dữ liệu
-    - Loại bỏ dữ liệu ngoại lệ (Outliers Handling)
-2. Biến đổi cấu trúc dữ liệu (Data Structuring)
-    - Chuẩn hóa tên cột (từ viết tắt, tên không rõ ràng)
-    - Gom nhóm dữ liệu (Aggregation)
-    - Chuyển đổi dữ liệu dạng bảng (Pivoting & Unpivoting)
-    - Chuẩn hóa dữ liệu về dạng chuẩn (Data Normalization)
-3. Xác thực dữ liệu (Data Validation)
-4. Ánh xạ dữ liệu (Data Join & Merging)
-5. Tạo đặc trưng (Feature Engineering)
+1. Go to Goole BigQuery -> create SilverLayer dataset
+2. Go to Transform folder, create new profiles.yml  & dbt_project.yml
+3. Create folder "models", "analytics" folders
+4. Create file "orders.sql"
+5. run "dbt run --full-refresh --select orders"
+* Các bảng khác tương tự
+* BigQuery yêu cầu mọi cột không được tổng hợp phải có trong GROUP BY, nhưng các cột đc lấy nếu có giá trị null hoặc giống nhau sẽ -> kquả bị sai. Sử dụng ANY_VALUE thay vì group by
 
 ## Load Steps:
-1. Xác định phương thức Load Data (full load or Incremental Load)
-2. Định dạng dữ liệu trước khi Load
-3.  Kiểm tra ràng buộc dữ liệu (Data Integrity Checks)
-4. Xử lý lỗi và đảm bảo tính toàn vẹn dữ liệu
-5. Kiểm tra hiệu suất và tối ưu hóa Load Data
-6.  Kiểm tra lại sau khi Load (Data Validation)
+1. Go to Goole BigQuery -> create GoldLayer dataset
+2. Go to Load folder, create new profiles.yml  & dbt_project.yml
+3. Create folder "models", "analytics" folders
+4. Create file "orders.sql"
+5. Thay đổi file dbt_project.yml, chuyển từ cơ chế tạo view sang tạo table.
+Load steps tương tự Transform steps tuy nhiên thay vì tạo view sẽ tạo table và có thể  sử dụng để phân tích được luôn.
+    - phương thức Load Data full load
 
 ### Reference 
 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 https://docs.getdbt.com/docs/core/connect-data-platform/bigquery-setup
 https://docs.getdbt.com/docs/build/seeds
 https://cloud.google.com/sdk/docs/install#deb
-
+https://docs.getdbt.com/docs/build/sql-models

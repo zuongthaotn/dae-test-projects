@@ -1,5 +1,6 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
+import pendulum
 from datetime import datetime
 
 # Define Default Arguments
@@ -20,16 +21,14 @@ with DAG(
     dag_id="backup_database_midnight",
     default_args=_args,
     description="The DAG for backing up database every day",
-    start_date = datetime(2024, 3, 20),
+    start_date = pendulum.datetime(2025, 1, 1, tz="UTC"),
     schedule="@daily",
     catchup=False,
-    tags=["mysql", "magnus's tasks"],
+    tags=["mysql", "magnus-tasks"],
 ) as dag:
     now = datetime.now()
     sql_filename = BACKUP_FOLDER + 'backup-' + now.strftime("%m-%d-%Y-%H-%M-%S") + '.sql'
-    backup_db = BashOperator(
+    BashOperator(
         task_id="backup_db",
         bash_command=f"mysqldump -u{MYSQL_USER} -p{MYSQL_PASS} {DB_NAME} > {sql_filename}"
     )
-
-    backup_db

@@ -9,8 +9,9 @@ from airflow.settings import Session
 from airflow import settings
 from airflow.models import BaseOperator
 import time
+from pathlib import Path
 
-# 1️⃣ Define Default Arguments
+#   Define Default Arguments
 _args = {
     "owner": "airflow",
     "depends_on_past": False,
@@ -25,7 +26,7 @@ MYSQL_PASS = 'magento123'
 DB_NAME = 'test_airflow'
 
 
-# 2️⃣ Define DAG using 'with' statement
+# Define DAG using 'with' statement
 with DAG(
     dag_id="data_from_csv_to_mysql",  # DAG ID
     default_args=_args,
@@ -66,11 +67,15 @@ with DAG(
 
     def mysql_create_table():
         sql="""
-            CREATE TABLE IF NOT EXISTS users (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(100) NOT NULL,
-                email VARCHAR(150) UNIQUE NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            CREATE TABLE IF NOT EXISTS orders (
+                order_id VARCHAR(100) UNIQUE NOT NULL PRIMARY KEY,
+                customer_id VARCHAR(100) NOT NULL,
+                order_status VARCHAR(100) NOT NULL,
+                order_purchase_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                order_approved_at TIMESTAMP,
+                order_delivered_carrier_date TIMESTAMP,
+                order_delivered_customer_date TIMESTAMP,
+                order_estimated_delivery_date TIMESTAMP
             );
             """
         hook = MySqlHook(mysql_conn_id='mysql_dynamic', schema='test_airflow')
@@ -79,10 +84,18 @@ with DAG(
     create_table = PythonOperator(task_id="create_mysql_table", python_callable=mysql_create_table)
 
     def mysql_insert_data():
-        ts = time.time()
-        sql = "INSERT into test_airflow.users(name, email) VALUES('Test', 'test-" + str(ts) +"@gmail.com')"
-        hook = MySqlHook(mysql_conn_id = 'mysql_dynamic', schema = 'test_airflow')
-        hook.run(sql, autocommit=True, parameters=None)
+        current_folder = Path(__file__)
+        csv_file = str(current_folder.parent) + "/datasets/orders.csv"
+        with open(csv_file, 'r') as file:
+            for line in file:
+                try:
+                    row_data = line.split(",")
+                    sql = f"INSERT into test_airflow.orders(order_id, customer_id, order_status, order_purchase_timestamp, order_approved_at, order_delivered_carrier_date, order_delivered_customer_date, order_estimated_delivery_date) \
+                        VALUES({row_data[0]}, {row_data[1]}, {row_data[2]}, {row_data[3]}, {row_data[4]}, {row_data[5]}, {row_data[6]}, {row_data[7]})"
+                    hook = MySqlHook(mysql_conn_id = 'mysql_dynamic', schema = 'test_airflow')
+                    hook.run(sql, autocommit=True, parameters=None)
+                except Exception:
+                    continue
 
     insert_data = PythonOperator(task_id="insert_mysql_data", python_callable=mysql_insert_data)
 

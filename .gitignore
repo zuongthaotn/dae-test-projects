@@ -4,3 +4,4 @@ google-key.json
 .user.yml
 logs/
 target/
+__pycache__

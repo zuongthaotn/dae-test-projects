@@ -27,8 +27,8 @@ with DAG(
     tags=["mysql", "magnus-tasks"],
 ) as dag:
     now = datetime.now()
-    sql_filename = BACKUP_FOLDER + 'full-backup-' + now.strftime("%m-%d-%Y-%H-%M-%S") + '.sql'
+    sql_filename = BACKUP_FOLDER + 'schema-backup-' + now.strftime("%m-%d-%Y-%H-%M-%S") + '.sql'
     BashOperator(
         task_id="backup_db",
-        bash_command=f"mysqldump -u{MYSQL_USER} -p{MYSQL_PASS} {DB_NAME} > {sql_filename}"
+        bash_command=f"mysqldump -d -u{MYSQL_USER} -p{MYSQL_PASS} {DB_NAME} > {sql_filename}"
     )

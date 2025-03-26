@@ -16,6 +16,7 @@ MYSQL_USER = 'magento'
 MYSQL_PASS = 'magento123'
 DB_NAME = 'kjcom'
 BACKUP_FOLDER = '/var/www/html/db/'
+TABLE_LIST = 'sales_order sales_order_item sales_order_tax sales_order_address sales_order_payment'
 
 with DAG(
     dag_id="backup_database_midnight",
@@ -27,8 +28,8 @@ with DAG(
     tags=["mysql", "magnus-tasks"],
 ) as dag:
     now = datetime.now()
-    sql_filename = BACKUP_FOLDER + 'full-backup-' + now.strftime("%m-%d-%Y-%H-%M-%S") + '.sql'
+    sql_filename = BACKUP_FOLDER + 'orders-backup-' + now.strftime("%m-%d-%Y-%H-%M-%S") + '.sql'
     BashOperator(
         task_id="backup_db",
-        bash_command=f"mysqldump -u{MYSQL_USER} -p{MYSQL_PASS} {DB_NAME} > {sql_filename}"
+        bash_command=f"mysqldump --skip-comments -u{MYSQL_USER} -p{MYSQL_PASS} {DB_NAME} > {sql_filename}"
     )

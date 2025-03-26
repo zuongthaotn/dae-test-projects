@@ -5,3 +5,4 @@ google-key.json
 logs/
 target/
 __pycache__
+temp_datalake

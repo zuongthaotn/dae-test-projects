@@ -16,6 +16,13 @@
 1. Start airflow
 - ./start_airflow.sh
 
-2. 
+2. install mongoDB
+    - Follow steps in reference
+
+3. Start mongoDB
+    - sudo systemctl start mongod
+    - sudo systemctl stop mongod
+    - sudo systemctl restart mongod
 
 ## Reference
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu

@@ -6,3 +6,4 @@ logs/
 target/
 __pycache__
 temp_datalake
+Shopify-Python-BigQuery/*.csv

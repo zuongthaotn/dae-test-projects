@@ -17,3 +17,7 @@
     API Password
 
     Shop domain (vd: my-shop.myshopify.com)
+
+2. Cách lấy google-key.json
+Tham khảo trong folder
+DBT-ETL-from-CSV-to-Google-Bigquery

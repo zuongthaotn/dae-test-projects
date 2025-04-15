@@ -21,3 +21,6 @@
 2. Cách lấy google-key.json
 Tham khảo trong folder
 DBT-ETL-from-CSV-to-Google-Bigquery
+
+# Status
+Done

@@ -5,6 +5,8 @@ query: data engineering
 language: English
 Learning Product: Courses
 Subject: Information Technology
+Subject: Computer Science
+Subject: Data Science
 
 # Steps:
  - run ./.venv/bin/python get_de_free_courses.py

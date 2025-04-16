@@ -29,6 +29,7 @@ class DataEngineeringCourses(scrapy.Spider):
         super().__init__(*args, **kwargs)
         self.page = 1
         self.stop = False
+        self.ids = []
         self.url = "https://www.coursera.org/courses?query=data%20engineering&language=English&productTypeDescription=Courses&topic=Information%20Technology"
 
     def start_requests(self):
@@ -41,23 +42,18 @@ class DataEngineeringCourses(scrapy.Spider):
             self.logger.warning("No data found.")
             self.stop = True
             return
-        print(f"---------------{self.page}---------------")
-        product_cards = re.split(r'(?=,"ProductCard_ProductCard:)', script_data)
-        print(f"Number of product cards: {len(product_cards)}")
-        results = []
-        for product_card in product_cards:
-            if ',"ProductCard_ProductCard:' in product_card:
-                results.append(product_card)
-        results[-1] = process_latest_string(results[-1])
-        for item in results:
-            item = item[1:]
-            item = '{' + item + '}'
-            item = json.loads(item)
-            for key, value in item.items():
-                if value.get("__typename") == "Search_ProductHit":
-                    # if self.page == 1 or self.page == 2:
-                    #     print(value.get("name"))
-                    if value.get("isCourseFree") == True:
+        match = re.search(r'window\.__APOLLO_STATE__\s*=\s*(.*?)window\.renderedClassNames', script_data, re.DOTALL)
+        if not match:
+            print("Search result not found")
+            self.stop = True
+            return
+        extracted = match.group(1).strip()
+        json_str = extracted.rstrip(";")
+        data = json.loads(json_str)
+        for key, value in data.items():
+            if isinstance(value, dict) and value.get("__typename") == "Search_ProductHit":
+                if value.get("isCourseFree") == True:
+                    if value.get("id") not in self.ids:
                         yield {
                             "page": self.page,
                             "title": value.get("name"),
@@ -65,15 +61,14 @@ class DataEngineeringCourses(scrapy.Spider):
                             "url": "https://www.coursera.org" + value.get("url", ""),
                             "skills": ','.join(value.get("skills"))
                         }
-        item = []
+                        self.ids.append(value.get("id"))
+        #
         if not self.stop:
             self.page += 1
             next_page_url = f"{self.url}&page={self.page}"
-            # print(next_page_url)
             yield scrapy.Request(next_page_url, callback=self.parse)
 
 
-# Inline run bằng CrawlerProcess
 if __name__ == "__main__":
     process = CrawlerProcess(settings={
         "FEEDS": {

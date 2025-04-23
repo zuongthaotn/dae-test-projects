@@ -1,0 +1,222 @@
+[
+  {
+    "region": "Morocco",
+    "region_code": "mor"
+  },
+  {
+    "region": "Holland",
+    "region_code": "hol"
+  },
+  {
+    "region": "Guernsey",
+    "region_code": "gue"
+  },
+  {
+    "region": "Uruguay",
+    "region_code": "uru"
+  },
+  {
+    "region": "Singapore",
+    "region_code": "sin"
+  },
+  {
+    "region": "Bahrain",
+    "region_code": "bhr"
+  },
+  {
+    "region": "Saudi Arabia",
+    "region_code": "ksa"
+  },
+  {
+    "region": "Ireland",
+    "region_code": "ire"
+  },
+  {
+    "region": "Macau",
+    "region_code": "mac"
+  },
+  {
+    "region": "Belgium",
+    "region_code": "bel"
+  },
+  {
+    "region": "Jersey",
+    "region_code": "jer"
+  },
+  {
+    "region": "Korea",
+    "region_code": "kor"
+  },
+  {
+    "region": "Slovenia",
+    "region_code": "svn"
+  },
+  {
+    "region": "Barbados",
+    "region_code": "bar"
+  },
+  {
+    "region": "Switzerland",
+    "region_code": "swi"
+  },
+  {
+    "region": "Spain",
+    "region_code": "spa"
+  },
+  {
+    "region": "Argentina",
+    "region_code": "arg"
+  },
+  {
+    "region": "Chile",
+    "region_code": "chi"
+  },
+  {
+    "region": "Hong Kong",
+    "region_code": "hk"
+  },
+  {
+    "region": "Bulgaria",
+    "region_code": "bul"
+  },
+  {
+    "region": "Mauritius",
+    "region_code": "mau"
+  },
+  {
+    "region": "Cyprus",
+    "region_code": "cyp"
+  },
+  {
+    "region": "Brazil",
+    "region_code": "brz"
+  },
+  {
+    "region": "Czech Republic",
+    "region_code": "cze"
+  },
+  {
+    "region": "Great Britain",
+    "region_code": "gb"
+  },
+  {
+    "region": "Greece",
+    "region_code": "gr"
+  },
+  {
+    "region": "India",
+    "region_code": "ind"
+  },
+  {
+    "region": "Turkey",
+    "region_code": "tur"
+  },
+  {
+    "region": "Malaysia",
+    "region_code": "mal"
+  },
+  {
+    "region": "France",
+    "region_code": "fr"
+  },
+  {
+    "region": "Slovakia",
+    "region_code": "slo"
+  },
+  {
+    "region": "Israel",
+    "region_code": "isr"
+  },
+  {
+    "region": "Russia",
+    "region_code": "rus"
+  },
+  {
+    "region": "Panama",
+    "region_code": "pan"
+  },
+  {
+    "region": "Yugoslavia",
+    "region_code": "yug"
+  },
+  {
+    "region": "Hungary",
+    "region_code": "hun"
+  },
+  {
+    "region": "United Arab Emirates",
+    "region_code": "uae"
+  },
+  {
+    "region": "Qatar",
+    "region_code": "qa"
+  },
+  {
+    "region": "Sweden",
+    "region_code": "swe"
+  },
+  {
+    "region": "USA",
+    "region_code": "usa"
+  },
+  {
+    "region": "Italy",
+    "region_code": "ity"
+  },
+  {
+    "region": "Austria",
+    "region_code": "aut"
+  },
+  {
+    "region": "Australia",
+    "region_code": "aus"
+  },
+  {
+    "region": "Poland",
+    "region_code": "pol"
+  },
+  {
+    "region": "Peru",
+    "region_code": "per"
+  },
+  {
+    "region": "Germany",
+    "region_code": "ger"
+  },
+  {
+    "region": "Japan",
+    "region_code": "jpn"
+  },
+  {
+    "region": "Denmark",
+    "region_code": "den"
+  },
+  {
+    "region": "Oman",
+    "region_code": "omn"
+  },
+  {
+    "region": "China",
+    "region_code": "chn"
+  },
+  {
+    "region": "South Africa",
+    "region_code": "saf"
+  },
+  {
+    "region": "Canada",
+    "region_code": "can"
+  },
+  {
+    "region": "New Zealand",
+    "region_code": "nz"
+  },
+  {
+    "region": "Puerto Rico",
+    "region_code": "pr"
+  },
+  {
+    "region": "Norway",
+    "region_code": "nor"
+  }
+]

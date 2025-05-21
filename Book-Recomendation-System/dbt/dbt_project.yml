@@ -1,0 +1,11 @@
+name: 'Book_recommendation'
+version: '1.0.0'
+profile: 'Book_recommendation'
+model-paths: ["models"]
+clean-targets:
+  - "target"
+  - "dbt_packages"
+models:
+  Book_recommendation:
+    gold_layer:
+      +schema: 	gold_layer

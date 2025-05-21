@@ -5,7 +5,7 @@ from airflow.providers.mysql.hooks.mysql import MySqlHook
 from airflow.operators.python import PythonOperator
 from pathlib import Path
 import pendulum
-from services.get_new_released_book_url import get_goodreads_books_list
+from airflow.get_new_released_book_url import get_goodreads_books_list
 import pandas as pd
 
 

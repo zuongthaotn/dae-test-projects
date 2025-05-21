@@ -1,0 +1,10 @@
+Book_recommendation:
+  target: dev
+  outputs:
+    dev:
+      type: mysql
+      server: localhost
+      username: magento
+      password: magento123
+      schema: book
+      driver: MySQL ODBC 8.0 ANSI Driver

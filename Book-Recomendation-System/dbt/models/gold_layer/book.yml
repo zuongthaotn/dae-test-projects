@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: book
+    description: "Cleaned and formatted book data"
+    columns:
+      - name: id
+        description: "Book ID"
+      - name: name
+        description: "Formatted book title"
+      - name: url
+        description: "Link to book"
+      - name: extra_info
+        description: "Other data"

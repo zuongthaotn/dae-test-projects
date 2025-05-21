@@ -1,7 +1,7 @@
 
 
 
-1. Install dbbt mysql
+1. Install dbt mysql
 pip install dbt-mysql
 
 Có 1 điều rất vớ vẩn là cài dbt-mysql thì khỏi dùng dbt-bigquery vì khi cài dbt-mysql thì bản dbt bị downgrade xuống 1.7 trong khi dbt-bigquery lại yêu cầu version là 1.9. Hi Vọng vấn đề này sẽ sớm dc pipy giải quyết.

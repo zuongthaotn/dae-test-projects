@@ -1,0 +1,6 @@
+version: 2
+
+sources:
+  - name: book_bronze_layer
+    tables:
+      - name: book

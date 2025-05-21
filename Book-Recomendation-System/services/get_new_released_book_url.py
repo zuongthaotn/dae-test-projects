@@ -31,14 +31,14 @@ class NewReleasedBooks(scrapy.Spider):
                 title = book.css('a.bookTitle::text').get()
                 link = response.urljoin(book.css('a.bookTitle::attr(href)').get())
                 extra = book.css('span.smallText::text').get()
-                cleaned_extra = ' '.join(line.strip() for line in extra.strip().splitlines()).replace("—", '-')
+                cleaned_extra = extra.replace("—", '-').replace('\n', '').replace('  ', '')
                 yield {
-                    'title': title,
-                    'link': link,
-                    'extra': cleaned_extra,
+                    'title': str(title),
+                    'link': str(link),
+                    'extra': str(cleaned_extra)
                 }
-                book_data.append(f"{title}, {link}")
-            if not len(books) or self.page > 2:
+                # book_data.append(f"{title}, {link}")
+            if not len(books) or self.page > 1:
                 self.stop = True
         except Exception as e: 
             print(e)

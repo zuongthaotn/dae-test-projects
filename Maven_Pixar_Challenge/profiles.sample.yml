@@ -1,0 +1,10 @@
+Maven_Pixar_Challenge:
+  target: dev
+  outputs:
+    dev:
+      type: mysql
+      server: localhost
+      username: xxx
+      password: xxx1212121
+      schema: dbt_mysql
+      driver: MySQL ODBC 8.0 ANSI Driver

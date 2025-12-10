@@ -5,7 +5,7 @@ google-key.json
 .user.yml
 logs/
 target/
-__pycache__
+**/__pycache__/
 temp_datalake
 Shopify-Python-BigQuery/*.csv
 Book-Recomendation-System/*.csv

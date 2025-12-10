@@ -1,4 +1,5 @@
 .venv
+venv
 .env
 google-key.json
 .user.yml
@@ -8,3 +9,5 @@ __pycache__
 temp_datalake
 Shopify-Python-BigQuery/*.csv
 Book-Recomendation-System/*.csv
+**.ipynb_checkpoints
+.vscode
